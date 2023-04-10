@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form>
+  <a href="/">Home</a>
+
+  <h1>[[${travel.courseName}]]</h1>
+  <h3>[[${travel.city}]] / [[${travel.night}]]박 [[${travel.days}]]일</h3><br/>
+
+  <div>
+    <select name="dayy">
+      <option th:each="dayy : ${#numbers.sequence(1, travel.days)}">[[${dayy}]]</option>
+    </select>일차 :
+
+    <select name="type">
+      <option>관광지</option>
+      <option>식당</option>
+      <option>카페</option>
+    </select>
+
+    <input type="text" name="spotName">
+
+    <input type="submit" value="추가">
+  </div><br/><br/>
+
+  <div th:each="dayy : ${#numbers.sequence(1, travel.days)}">
+    <h2>[[${dayy}]]일차</h2>
+    <ul th:each="detailCourse : ${detailCourse}" th:if="${detailCourse.dayy == dayy}">
+      <li>[[${detailCourse.type}]] / [[${detailCourse.spotName}]] ···································
+        <a th:href="|/deleteD?spotNo=${detailCourse.spotNo}&id=${detailCourse.id}|"> 삭제</a>
+      </li>
+    </ul><br/>
+  </div>
+
+  <a th:href="|/course?id=${travel.id}|">추가한 코스 확인하러 가기</a>
+
+  <input type="hidden" name="id" th:value="${travel.id}"/>
+  <input type="hidden" name="courseName" th:value="${travel.courseName}">
+
+</form>
+
+</body>
+</html>

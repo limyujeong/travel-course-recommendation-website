@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/search">
+    <a href="/">Home</a>
+
+    <h1>국내 여행 코스 추천</h1>
+
+    여행지 <select name="city">
+        <option th:each="city : ${cities}">[[${city.city}]]</option>
+    </select>
+    <input type="submit" value="찾기"><br/><br/>
+
+    <a href="/recommendform">나만의 여행 코스를 추천하고 싶다면?</a><br/>
+
+    <ul>
+        <a th:each="travel : ${list}" th:href="|/course?id=${travel.id}|">
+            <li>
+                [[${travel.city}]] / [[${travel.night}]]박 [[${travel.days}]]일 / [[${travel.courseName}]]
+            </li>
+        </a>
+    </ul>
+</form>
+
+</body>
+</html>

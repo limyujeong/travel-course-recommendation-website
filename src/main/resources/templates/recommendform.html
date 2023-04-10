@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/recommend">
+    <a href="/">Home</a>
+
+    <h1>나만의 여행 코스 추천하기</h1>
+
+    id <input type="number" style="width:80px" min="0" name="id"><br/><br/>
+
+    나만의 여행 코스 이름 <input type="text" name="courseName"><br/><br/>
+
+    추천하는 여행지
+    <select name="city">
+        <option th:each="city : ${cities}">[[${city.city}]]</option>
+    </select><br/><br/>
+
+    몇 박 며칠 계획?
+    <input type="number" style="width:40px" min="0" name="night"> 박
+    <input type="number" style="width:40px" min="1" name="days"> 일 <br/><br/>
+
+    <input type="submit" value="등록하기">
+</form>
+
+</body>
+</html>

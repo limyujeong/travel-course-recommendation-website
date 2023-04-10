@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="/">Home</a>
+
+<h1>[[${travel.courseName}]]</h1>
+<h3>[[${travel.city}]] / [[${travel.night}]]박 [[${travel.days}]]일</h3><br/>
+
+<div th:each="dayy : ${#numbers.sequence(1, travel.days)}">
+    <h2>[[${dayy}]]일차</h2>
+    <ul th:each="detailCourse : ${detailCourse}" th:if="${detailCourse.dayy == dayy}">
+        <li>[[${detailCourse.type}]] / [[${detailCourse.spotName}]]</li>
+    </ul>
+    <br/>
+</div>
+<br/>
+
+<a th:href="|/addform?id=${travel.id}|">[ 수정하기 ]</a>
+<a th:href="|/deleteT?id=${travel.id}|">[ 삭제하기 ]</a>
+
+</body>
+</html>
